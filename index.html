@@ -13,13 +13,20 @@
     <input type="date" id="datePicker">
 
     <div class="day-nav">
-      <button id="prevDay">⬅️ Vorheriger Tag</button>
-      <button id="nextDay">Nächster Tag ➡️</button>
+      <button id="prevDay">Vorheriger Tag</button>
+      <button id="todayButton">Heute</button>
+      <button id="nextDay">Nächster Tag</button>
     </div>
 
     <h2 id="selectedDate">Heute</h2>
 
-    <ul id="entriesList"></ul>
+    <ul id="entriesList">
+      <li>
+        <button class="delete-btn">🗑️</button>
+        <button class="edit-btn">✏️</button>
+        <span>Beispieltext</span>
+      </li>
+    </ul>
 
     <input type="text" id="newEntry" placeholder="Neuer Eintrag...">
 
@@ -31,7 +38,7 @@
     </div>
 
     <textarea id="generatedOutput" placeholder="Generierter Text erscheint hier..." readonly></textarea>
-    <button id="copyButton">📋 Kopieren</button>
+    <button id="copyButton">Kopieren</button>
 
   <script src="script.js"></script>
 </body>

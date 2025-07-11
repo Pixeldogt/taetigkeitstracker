@@ -1,17 +1,18 @@
 :root {
-  --primary: #4CAF50;
-  --secondary: #f1f1f1;
-  --text: #333;
-  --bg: #fafafa;
-  --border: #ddd;
+  --primary: #6A1B9A;
+  --secondary: #9c74e6;
+  --hover-dark: #4A148C;
+  --hover-light: #B39DDB;
+  --blue-accent: #8bafce;
+  --beige-accent: #e8d5b5;
 }
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: var(--bg);
+  background: whitesmoke;
   margin: 0;
   padding: 2rem;
-  color: var(--text);
+  color: #333;
 }
 
 .container {
@@ -20,7 +21,7 @@ body {
   border-radius: 1.5rem;
   max-width: 700px;
   margin: auto;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 h1, h2 {
@@ -33,9 +34,9 @@ input[type="text"] {
   padding: 0.75rem 1rem;
   font-size: 1rem;
   margin-bottom: 1rem;
-  border: 1px solid var(--border);
+  border: 1px solid #ddd;
   border-radius: 999px;
-  background: var(--secondary);
+  background: #f1f1f1;
   box-sizing: border-box;
   outline: none;
   transition: border 0.2s;
@@ -58,13 +59,7 @@ button {
   border: none;
   border-radius: 999px;
   cursor: pointer;
-  background: var(--primary);
-  color: white;
   transition: background 0.2s;
-}
-
-button:hover {
-  background: #3e8e41;
 }
 
 .button-row {
@@ -81,8 +76,8 @@ button:hover {
   padding: 1rem;
   font-size: 1rem;
   border-radius: 1rem;
-  border: 1px solid var(--border);
-  background: var(--secondary);
+  border: 1px solid #ddd;
+  background: #f1f1f1;
   font-family: monospace;
   white-space: pre-wrap;
   box-sizing: border-box;
@@ -91,11 +86,21 @@ button:hover {
 #copyButton {
   margin-top: 1rem;
   width: 100%;
-  background-color: #2196F3;
+  background-color: var(--blue-accent);
+  font-weight: bold;
 }
 
 #copyButton:hover {
   background-color: #1976D2;
+}
+
+#generateButton, #exportButton, #importButton {
+  background-color: var(--beige-accent);
+  font-weight: bold;
+}
+
+#generateButton:hover, #exportButton:hover, #importButton:hover {
+  background-color: #e2b86f;
 }
 
 li button {
@@ -120,14 +125,58 @@ li button:hover {
   flex: 1;
   padding: 0.6rem 1rem;
   border-radius: 999px;
-  background-color: #8068e9;
-  border: 1px solid #ccc;
-  color: #ffffff;
+  border: 1px solid var(--primary);
+  color: white;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.2s;
 }
 
-.day-nav button:hover {
-  background-color: #ddd;
+/* Vorheriger Tag: Verlauf von hell nach dunkel */
+#prevDay {
+  background: linear-gradient(to right, var(--secondary), var(--primary)); /* Hell nach Dunkel */
+}
+
+#prevDay:hover {
+  background: linear-gradient(to right, var(--hover-light), var(--hover-dark)); /* Etwas dunkler beim Hover */
+}
+
+/* Heute: Dunkles Lila */
+#todayButton {
+  background-color: var(--primary); /* Dunkles Lila */
+}
+
+#todayButton:hover {
+  background-color: var(--hover-dark); /* Noch dunkler beim Hover */
+}
+
+/* Nächster Tag: Verlauf von dunkel nach hell */
+#nextDay {
+  background: linear-gradient(to right, var(--primary), var(--secondary)); /* Dunkel nach Hell */
+}
+
+#nextDay:hover {
+  background: linear-gradient(to right, var(--hover-dark), var(--hover-light)); /* Etwas heller beim Hover */
+}
+
+/* Styling für die Buttons */
+.delete-btn, .edit-btn {
+  font-size: 1rem;
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 999px; /* Vollständig abgerundete Ecken */
+  padding: 0.3rem 1rem; /* Mehr horizontales Padding für die Pillenform */
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.delete-btn:hover {
+  background: #ffe6e6;
+  color: red;
+}
+
+.edit-btn:hover {
+  background: #e6f7ff;
+  color: blue;
 }

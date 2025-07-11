@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const importFileInput = document.getElementById('importFile');
   const prevDayBtn = document.getElementById('prevDay');
   const nextDayBtn = document.getElementById('nextDay');
+  const todayButton = document.getElementById('todayButton');
 
   prevDayBtn.addEventListener('click', () => {
     shiftDate(-1);
@@ -17,6 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   nextDayBtn.addEventListener('click', () => {
     shiftDate(1);
+  });
+
+  todayButton.addEventListener('click', () => {
+    const today = new Date().toISOString().split('T')[0];
+    datePicker.value = today;
+    updateSelectedDate(today);
+    loadEntries(today);
   });
 
   function shiftDate(days) {
@@ -97,14 +105,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     entries.forEach((entryText, index) => {
       const li = document.createElement('li');
-      li.textContent = entryText;
 
+      // Delete Button
       const deleteBtn = document.createElement('button');
       deleteBtn.textContent = '🗑️';
-      deleteBtn.style.marginLeft = '0.5rem';
-      deleteBtn.style.border = 'none';
-      deleteBtn.style.background = 'transparent';
-      deleteBtn.style.cursor = 'pointer';
+      deleteBtn.classList.add('delete-btn');
 
       deleteBtn.addEventListener('click', () => {
         if (confirm('Diesen Eintrag wirklich löschen?')) {
@@ -117,7 +122,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
+      // Edit Button
+      const editBtn = document.createElement('button');
+      editBtn.textContent = '✏️';
+      editBtn.classList.add('edit-btn');
+
+      editBtn.addEventListener('click', () => {
+        const newText = prompt('Eintrag bearbeiten:', entryText);
+        if (newText !== null && newText.trim() !== '') {
+          allEntries[date][index] = newText.trim();
+          saveEntries();
+          loadEntries(date);
+        }
+      });
+
+      // Append buttons and text to the list item
       li.appendChild(deleteBtn);
+      li.appendChild(editBtn);
+      li.appendChild(document.createTextNode(entryText));
+
       entriesList.appendChild(li);
     });
   }
